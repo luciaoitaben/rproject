@@ -1,0 +1,128 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+library(abind, pos=16)
+```
+
+
+```{r}
+library(e1071, pos=17)
+```
+
+
+
+### Resúmenes numéricos: Pec1
+```{r}
+numSummary(Pec1[,"price", drop=FALSE], groups=Pec1$beds_text, statistics=c("mean", "sd", "IQR", "quantiles", "cv"),
+   quantiles=c(0,.25,.5,.75,1))
+```
+
+```{r}
+Pregunta2 <- subset(Pec1, subset=price <=500)
+```
+
+```{r}
+Pregunta2 <- within(Pregunta2, {
+  gender <- factor(gender, labels=c('Hombre','Mujer'))
+})
+```
+
+
+### Histograma: beds
+```{r}
+with(Pregunta2, Hist(beds, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+### Histograma: beds
+```{r}
+with(Pregunta2, Hist(beds, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+### Histograma: price
+```{r}
+with(Pregunta2, Hist(price, scale="frequency", breaks="Sturges", col="darkgray"))
+```
+
+
+### Gráfico de puntos beds
+```{r}
+with(Pregunta2, Dotplot(beds, bin=FALSE))
+```
+
+
+### Índice de gráficos: Pregunta2
+```{r}
+indexplot(Pregunta2[,'beds', drop=FALSE], type='h', id.method='y', id.n=2)
+```
+
+```{r}
+library(aplpack, pos=18)
+```
+
+
+
+### Gráfica de tallos y hojas: beds
+```{r}
+with(Pregunta2, stem.leaf(beds, na.rm=TRUE))
+```
+
+
+### Diagrama de caja: ~ beds
+```{r}
+Boxplot( ~ beds, data=Pregunta2, id=list(method="y"))
+```
+
+
+### Gráfica de comparación de cuantiles: beds
+```{r}
+with(Pregunta2, qqPlot(beds, dist="norm", id=list(method="y", n=2, labels=rownames(Pregunta2))))
+```
+
+
+### Diagrama de barras: beds_text
+```{r}
+with(Pregunta2, Barplot(beds_text, xlab="beds_text", ylab="Frequency", label.bars=TRUE))
+```
+
+```{r}
+library(colorspace, pos=19)
+```
+
+
+
+### Gráfica de sectores: gender
+```{r}
+with(Pregunta2, piechart(gender, xlab="", ylab="", main="gender", col=rainbow_hcl(2), scale="percent"))
+```
+
+```{r}
+Pregunta2 <- subset(Pregunta2, subset=beds < 7)
+```
+
+
+### Modelo lineal: AnovaModel.1: price ~ beds_text
+```{r}
+AnovaModel.1 <- lm(price ~ beds_text, data=Pregunta2, contrasts=list(beds_text ="contr.Sum"))
+Anova(AnovaModel.1)
+Tapply(price ~ beds_text, mean, na.action=na.omit, data=Pregunta2) # means
+Tapply(price ~ beds_text, sd, na.action=na.omit, data=Pregunta2) # std. deviations
+xtabs(~ beds_text, data=Pregunta2) # counts
+```
+
