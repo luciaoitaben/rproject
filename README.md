@@ -10,5 +10,5 @@ Phase 1:
 ▶️Modelling   
 ▶️Analysis of aytipical values    
 ▶️Graphs and presentations    
-▶️Anova of 1 and 2 factors    
+▶️Anova of 1 and multiple factors    
 ▶️Hypothesis contrast   
