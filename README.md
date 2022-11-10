@@ -3,7 +3,7 @@ Learning and applying R in cuantitative research
 
 🔎Airbnb research🔎
 
-Phase 1:
+Phase 1:    
 ▶️Descriptive analyisis   
 ▶️Refactoring   
 ▶️Measure comparison    
