@@ -1,0 +1,17 @@
+
+> Pec1 <- subset(Pec1, subset=price<=500)
+
+> t.test(price~host_identity_verified, alternative='two.sided', conf.level=.95, var.equal=FALSE, data=Pec1)
+
+	Welch Two Sample t-test
+
+data:  price by host_identity_verified
+t = -30.535, df = 1923.4, p-value < 2.2e-16
+alternative hypothesis: true difference in means between group f and group t is not equal to 0
+95 percent confidence interval:
+ -71.67533 -63.02383
+sample estimates:
+mean in group f mean in group t 
+       75.76899       143.11857 
+
+
