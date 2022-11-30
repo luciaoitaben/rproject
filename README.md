@@ -5,25 +5,22 @@ Learning and applying R in cuantitative research
 
 Phase 1:
 
-▶️Descriptive analyisis
-▶️Refactoring
-▶️Measure comparison
-▶️Modelling
-▶️Analysis of aytipical values
-▶️Graphs and presentations
-▶️Anova of 1 and multiple factors
-▶️Hypothesis contrast
+▶️Descriptive analyisis   
+▶️Refactoring   
+▶️Measure comparison    
+▶️Modelling   
+▶️Analysis of aytipical values    
+▶️Graphs and presentations    
+▶️Anova of 1 and multiple factors   
+▶️Hypothesis contrast   
 
 Phase 2:
 
 👻Ongoing.. 👻
 
-▶️Multivariate statistics
-
-▶️Correlations and linear regression
-
-▶️Dependencies and causality
-
+▶️Multivariate statistics   
+▶️Correlations and linear regression    
+▶️Dependencies and causality    
 ▶️Time series
 
 
