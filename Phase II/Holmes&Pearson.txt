@@ -1,0 +1,87 @@
+
+> load("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221.xlsx")
+
+> PEC2 <- 
++   readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+
+> preciofiltrado <- subset(PEC2, subset=<350)
+
+> filtradocamas <- subset(PEC2, subset=<7)
+
+> library(lattice, pos=16)
+
+> library(survival, pos=16)
+
+> library(Formula, pos=16)
+
+> library(ggplot2, pos=16)
+
+> library(Hmisc, pos=16)
+
+> rcorr.adjust(PEC2[,c("beds","price")], type="pearson", use="complete")
+
+ Pearson correlations:
+        beds  price
+beds  1.0000 0.2814
+price 0.2814 1.0000
+
+ Number of observations: 12605 
+
+ Pairwise two-sided p-values:
+      beds   price 
+beds         <.0001
+price <.0001       
+
+ Adjusted p-values (Holm's method)
+      beds   price 
+beds         <.0001
+price <.0001       
+
+> PEC2 <- subset(PEC2, subset=<350, select=c(price))
+
+> PEC2 <- subset(PEC2, subset=<7)
+
+> rcorr.adjust(PEC2[,c("beds","price")], type="pearson", use="complete")
+
+ Pearson correlations:
+        beds  price
+beds  1.0000 0.2814
+price 0.2814 1.0000
+
+ Number of observations: 12605 
+
+ Pairwise two-sided p-values:
+      beds   price 
+beds         <.0001
+price <.0001       
+
+ Adjusted p-values (Holm's method)
+      beds   price 
+beds         <.0001
+price <.0001       
+
+> cor(PEC2[,c("beds","price")], use="complete")
+           beds     price
+beds  1.0000000 0.2813976
+price 0.2813976 1.0000000
+
+> rcorr.adjust(PEC2[,c("beds","price")], type="pearson", use="complete")
+
+ Pearson correlations:
+        beds  price
+beds  1.0000 0.2814
+price 0.2814 1.0000
+
+ Number of observations: 12605 
+
+ Pairwise two-sided p-values:
+      beds   price 
+beds         <.0001
+price <.0001       
+
+ Adjusted p-values (Holm's method)
+      beds   price 
+beds         <.0001
+price <.0001       
+
