@@ -1,7 +1,7 @@
 # rproject
 Learning and applying R in cuantitative research 
 
-🔎Airbnb research🔎
+🔎Hospitality industry research🔎
 
 Phase 1:
 
