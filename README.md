@@ -6,6 +6,7 @@ Learning and applying R in cuantitative research
 Phase 1:
 
 ▶️Descriptive analyisis
+
 ▶️Refactoring
 
 ▶️Measure comparison
@@ -23,7 +24,16 @@ Phase 1:
 Phase 2:
 
 ▶️Ongoing..
+
 ▶️Multivariate statistics
+
+▶️Correlations and linear regression
+
+▶️Dependencies and causality
+
+▶️Time series
+
+
 
 Phase 3:
 ▶️TBD..
