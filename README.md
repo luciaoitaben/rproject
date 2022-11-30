@@ -14,7 +14,7 @@ Phase I:
 ▶️Anova of 1 and multiple factors   
 ▶️Hypothesis contrast   
 
-Phase II: 
+Phase II:     
 👻Ongoing..   
 ▶️Multivariate statistics   
 ▶️Correlations and linear regression    
