@@ -52,3 +52,38 @@ numSummary(Dataset[,"accommodates", drop=FALSE], statistics=c("mean", "sd", "IQR
 refactorizado <- readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/Modelo2MIC_PEC2_20221.xlsx", rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
 ```
 
+
+### Resúmenes numéricos: refactorizado
+```{r}
+numSummary(refactorizado[,"price", drop=FALSE], groups=refactorizado$accommodates.FACTOR., statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Modelo lineal: RegModel.2: price~accommodates+bathrooms+bedrooms+beds
+```{r}
+RegModel.2 <- lm(price~accommodates+bathrooms+bedrooms+beds, data=refactorizado)
+summary(RegModel.2)
+```
+
+```{r}
+Timeseries <- readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221 Time Series.xlsx", rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+```
+
+
+### Gráfica lineal: host_since_aggregated by year
+```{r}
+with(Timeseries, lineplot(year, host_since_aggregated))
+```
+
+
+### Gráfica lineal: host_since_aggregated by year
+```{r}
+with(Timeseries, lineplot(year, host_since_aggregated))
+```
+
+
+### Gráfica lineal: host_since_aggregated by year
+```{r}
+with(Timeseries, lineplot(year, host_since_aggregated))
+```
+

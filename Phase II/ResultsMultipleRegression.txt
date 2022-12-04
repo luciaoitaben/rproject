@@ -84,3 +84,11 @@ Multiple R-squared:  0.09678,	Adjusted R-squared:  0.09649
 F-statistic: 337.5 on 4 and 12600 DF,  p-value: < 2.2e-16
 
 
+> Timeseries <- readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221 Time Series.xlsx", rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+
+> with(Timeseries, lineplot(year, host_since_aggregated))
+
+> with(Timeseries, lineplot(year, host_since_aggregated))
+
+> with(Timeseries, lineplot(year, host_since_aggregated))
+
