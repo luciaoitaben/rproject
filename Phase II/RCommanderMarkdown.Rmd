@@ -1,0 +1,54 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+Dataset <- 
+  readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+```
+
+
+### Modelo lineal: RegModel.1: price~accommodates
+```{r}
+RegModel.1 <- lm(price~accommodates, data=Dataset)
+summary(RegModel.1)
+```
+
+```{r}
+library(abind, pos=16)
+library(e1071, pos=17)
+
+
+### Resúmenes numéricos: Dataset
+```{r}
+numSummary(Dataset[,"accommodates", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Resúmenes numéricos: Dataset
+```{r}
+numSummary(Dataset[,"accommodates", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+
+```{r}
+
+```{r}
+refactorizado <- readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/Modelo2MIC_PEC2_20221.xlsx", rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+```
+

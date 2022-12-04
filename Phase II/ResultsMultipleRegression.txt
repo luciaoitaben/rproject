@@ -1,0 +1,86 @@
+
+> Dataset <- 
++   readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC2/MIC_PEC2_20221.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC2_20221", stringsAsFactors=TRUE)
+
+> RegModel.1 <- lm(price~accommodates, data=Dataset)
+
+> summary(RegModel.1)
+
+Call:
+lm(formula = price ~ accommodates, data = Dataset)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-387.0  -58.1  -25.9   18.4 9829.6 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    14.331      4.694   3.053  0.00227 ** 
+accommodates   38.762      1.085  35.716  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 274.2 on 12603 degrees of freedom
+Multiple R-squared:  0.09191,	Adjusted R-squared:  0.09184 
+F-statistic:  1276 on 1 and 12603 DF,  p-value: < 2.2e-16
+
+
+> library(abind, pos=16)
+
+> library(e1071, pos=17)
+
+> numSummary(Dataset[,"accommodates", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+     mean       sd IQR 0% 25% 50% 75% 100%     n
+ 3.693455 2.250771   3  1   2   4   5   16 12605
+
+> numSummary(Dataset[,"accommodates", drop=FALSE], statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+     mean       sd IQR 0% 25% 50% 75% 100%     n
+ 3.693455 2.250771   3  1   2   4   5   16 12605
+
+> numSummary(refactorizado[,"price", drop=FALSE], groups=refactorizado$accommodates.FACTOR., statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+                    mean        sd    IQR  0%    25%   50%     75% 100% price:n
+1 accomodates   55.88264 270.43452  25.00   9  25.00  35.0   50.00 8999    1457
+10 accomodates 430.52143 474.99967 256.50  15 255.75 358.5  512.25 5500     140
+11 accomodates 465.70000 296.22291  33.50 259 331.00 345.5  364.50 1100      10
+12 accomodates 512.21622 270.00156 423.00 103 280.00 484.0  703.00 1200      37
+13 accomodates 465.44444 154.64727 154.00 296 351.00 448.0  505.00  785       9
+14 accomodates 460.94444 170.70631 212.25 201 352.50 393.5  564.75  750      18
+15 accomodates 384.55556 103.02683  11.00 280 355.00 360.0  366.00  600       9
+16 accomodates 868.72973 396.58771 553.00 263 604.00 847.0 1157.00 1825      37
+2 accomodates   97.57944 266.51389  55.00  11  45.00  64.0  100.00 9200    3814
+3 accomodates  119.53383  78.61525  91.00  11  65.00 100.0  156.00  663     946
+4 accomodates  169.54277 247.14763 105.00  10 100.00 150.0  205.00 9999    2782
+5 accomodates  196.16946 204.49500 105.75  10 127.00 175.0  232.75 5000    1074
+6 accomodates  244.93617 379.92905 128.00  10 144.00 204.0  272.00 5500    1457
+7 accomodates  261.22348 378.90409 126.75  10 163.25 219.0  290.00 6000     264
+8 accomodates  313.88147 343.35715 138.25  10 210.00 268.5  348.25 5000     464
+9 accomodates  376.86207 180.78229 181.50 110 252.50 330.0  434.00 1100      87
+
+> RegModel.2 <- lm(price~accommodates+bathrooms+bedrooms+beds, data=refactorizado)
+
+> summary(RegModel.2)
+
+Call:
+lm(formula = price ~ accommodates + bathrooms + bedrooms + beds, 
+    data = refactorizado)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-486.8  -58.1  -26.6   21.3 9805.7 
+
+Coefficients:
+             Estimate Std. Error t value     Pr(>|t|)    
+(Intercept)     2.483      6.014   0.413         0.68    
+accommodates   31.781      2.348  13.537      < 2e-16 ***
+bathrooms      25.049      4.459   5.618 0.0000000197 ***
+bedrooms      -18.513      4.487  -4.126 0.0000370742 ***
+beds           14.281      2.590   5.513 0.0000000359 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 273.5 on 12600 degrees of freedom
+Multiple R-squared:  0.09678,	Adjusted R-squared:  0.09649 
+F-statistic: 337.5 on 4 and 12600 DF,  p-value: < 2.2e-16
+
+
