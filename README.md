@@ -1,7 +1,8 @@
 # rproject
-Learning and applying R in cuantitative research 
+Learning and applying R in cuantitative research      
+💡Rcmdr package💡               
 
-🔎Hospitality industry research🔎
+Hospitality industry research🔎:
 
 Phase I:
 
