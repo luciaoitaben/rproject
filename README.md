@@ -18,7 +18,8 @@ Phase I:
 Phase II:     
 👻Ongoing..   
 ▶️Multivariate statistics   
-▶️Correlations and linear regression    
+▶️Correlations and linear regression  
+▶️R squared           
 ▶️Dependencies and causality    
 ▶️Time series   
 
