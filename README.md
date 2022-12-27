@@ -15,13 +15,17 @@ Phase I:
 ▶️Anova of 1 and multiple factors   
 ▶️Hypothesis contrast   
 
-Phase II:     
-👻Ongoing..   
+Phase II:      
 ▶️Multivariate statistics   
 ▶️Correlations and linear regression  
 ▶️R squared           
 ▶️Dependencies and causality    
 ▶️Time series   
 
-Phase III:  
-💕TBD..   
+Phase III:  Ongoing 💼🧪🌟
+▶️Cross-sectional techniques                      
+▶️Factor analysis                                     
+▶️Cluster analysis                                          
+▶️Multidimensional scalogram analysis                                       
+▶️Correspondence analysis                                         
+▶️Measurement system analysis (MSA)                                    
