@@ -4,8 +4,7 @@ Learning and applying R in cuantitative research
 
 Hospitality industry research🔎:
 
-Phase I:
-
+Phase I:                            
 ▶️Descriptive analyisis   
 ▶️Refactoring   
 ▶️Measure comparison    
