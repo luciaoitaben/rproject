@@ -22,7 +22,7 @@ Phase II:
 ▶️Dependencies and causality    
 ▶️Time series   
 
-Phase III:  Ongoing 💼🧪🌟
+Phase III:  Ongoing 💼🧪🌟                                      
 ▶️Cross-sectional techniques                      
 ▶️Factor analysis                                     
 ▶️Cluster analysis                                          
