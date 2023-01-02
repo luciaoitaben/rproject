@@ -1,0 +1,21 @@
+
+> Dataset <- 
++   readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC3/Ejercicio1.2.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="Sheet1", stringsAsFactors=TRUE)
+
+> Dataset$Review_accuracy2 <- with(Dataset, review_accuracy/4,647058)
+
+> Dataset$Review_checkin2 <- with(Dataset, review_checkin/4,722199)
+
+> Dataset$Review_cleanliness2 <- with(Dataset, review_cleanliness/4,607761)
+
+> Dataset$Review_communication2 <- with(Dataset, review_communication/4,708705)
+
+> Dataset$Review_location2 <- with(Dataset, review_location/4,771416)
+
+> Dataset$indicador <- with(Dataset, 
++   (1/5*Review_accuracy2)+(1/5*Review_checkin2)+(1/5*Review_cleanliness2)+(1/5*Review_communication2)+(1/5*Review_location2))
+
+> Dataset$indicador2 <- with(Dataset, 
++   (1/14*Review_accuracy2)+(1/14*Review_checkin2)+(1/14*Review_cleanliness2)+(1/14*Review_communication2)+(10/14*Review_location2))
+

@@ -1,0 +1,53 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+Dataset <- 
+  readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC3/Ejercicio1.2.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="Sheet1", stringsAsFactors=TRUE)
+```
+
+```{r}
+Dataset$Review_accuracy2 <- with(Dataset, review_accuracy/4,647058)
+```
+
+```{r}
+Dataset$Review_checkin2 <- with(Dataset, review_checkin/4,722199)
+```
+
+```{r}
+Dataset$Review_cleanliness2 <- with(Dataset, review_cleanliness/4,607761)
+```
+
+```{r}
+Dataset$Review_communication2 <- with(Dataset, review_communication/4,708705)
+```
+
+```{r}
+Dataset$Review_location2 <- with(Dataset, review_location/4,771416)
+```
+
+```{r}
+Dataset$indicador <- with(Dataset, 
+  (1/5*Review_accuracy2)+(1/5*Review_checkin2)+(1/5*Review_cleanliness2)+(1/5*Review_communication2)+(1/5*Review_location2))
+```
+
+```{r}
+Dataset$indicador2 <- with(Dataset, 
+  (1/14*Review_accuracy2)+(1/14*Review_checkin2)+(1/14*Review_cleanliness2)+(1/14*Review_communication2)+(10/14*Review_location2))
+```
+
