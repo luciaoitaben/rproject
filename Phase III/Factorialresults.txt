@@ -1,0 +1,92 @@
+
+> Dataset <- 
++   readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC3/MIC_PEC3_20221.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="MIC_PAC3_21221", stringsAsFactors=TRUE)
+
+> local({
++   .FA <- 
++   factanal(~accommodates+bathrooms+bedrooms+beds+price+review_accuracy+review_checkin+review_cleanliness+review_communication+review_location,
++    factors=2, rotation="varimax", scores="regression", data=Dataset)
++   print(.FA)
++   Dataset <<- within(Dataset, {
++     F2 <- .FA$scores[,2]
++     F1 <- .FA$scores[,1]
++   })
++ })
+
+Call:
+factanal(x = ~accommodates + bathrooms + bedrooms + beds + price +     review_accuracy + review_checkin + review_cleanliness + review_communication +     review_location, factors = 2, data = Dataset, scores = "regression",     rotation = "varimax")
+
+Uniquenesses:
+        accommodates            bathrooms             bedrooms                 beds                price 
+               0.119                0.694                0.224                0.177                0.903 
+     review_accuracy       review_checkin   review_cleanliness review_communication      review_location 
+               0.224                0.297                0.421                0.268                0.619 
+
+Loadings:
+                     Factor1 Factor2
+accommodates                  0.938 
+bathrooms                     0.553 
+bedrooms                      0.881 
+beds                          0.907 
+price                         0.310 
+review_accuracy       0.879         
+review_checkin        0.835         
+review_cleanliness    0.761         
+review_communication  0.854         
+review_location       0.617         
+
+               Factor1 Factor2
+SS loadings      3.162   2.891
+Proportion Var   0.316   0.289
+Cumulative Var   0.316   0.605
+
+Test of the hypothesis that 2 factors are sufficient.
+The chi square statistic is 1843.69 on 26 degrees of freedom.
+The p-value is 0 
+
+> library(abind, pos=16)
+
+> library(e1071, pos=17)
+
+> numSummary(Dataset[,c("F1", "F2"), drop=FALSE], groups=Dataset$neighbourhood, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+
+Variable: F1 
+                           mean        sd       IQR         0%         25%        50%       75%      100%    n
+Ciutat Vella        -0.03765936 1.0891558 0.7571402 -10.753185 -0.20005799 0.27917856 0.5570822 1.0206551 2417
+Eixample             0.05602090 0.8455904 0.6628626  -8.459383 -0.12949585 0.26992502 0.5333668 0.9137921 4398
+Gracia               0.03099594 0.8583113 0.6910964  -7.730366 -0.15938533 0.24629468 0.5317110 0.8486185 1033
+Horta-Guinardo      -0.09311720 1.1459857 0.7664836  -8.455156 -0.24540491 0.23214648 0.5210787 0.8141019  324
+Les Corts           -0.17637659 1.0750471 0.8013639  -8.484807 -0.37724252 0.07183892 0.4241214 0.8960440  607
+Nou Barris           0.07718532 0.6592503 0.5518916  -2.469819 -0.06419745 0.27614941 0.4876941 1.0594247  120
+Sant Andreu         -0.07533857 1.1568207 0.7737084  -8.455286 -0.27313371 0.24135212 0.5005747 0.7948078  259
+Sant Marti           0.01534710 0.8190367 0.6907085  -8.440932 -0.20451284 0.20751062 0.4861956 0.8610525 1280
+Sants-Montjuic      -0.03000832 0.9552460 0.7177232  -8.464555 -0.22059591 0.21946461 0.4971273 1.1375953 1679
+Sarria-Sant Gervasi -0.01876101 1.2656816 0.6762109  -8.407656 -0.09438379 0.33239136 0.5818271 0.9746694  488
+
+Variable: F2 
+                           mean        sd       IQR        0%        25%          50%         75%     100%    n
+Ciutat Vella        -0.25357401 0.8006214 0.8623588 -1.124133 -0.7940356 -0.628708482  0.06832316 5.501645 2417
+Eixample             0.21920220 1.0898700 1.5819873 -1.072971 -0.7630959  0.051676618  0.81889135 6.935399 4398
+Gracia              -0.04365706 0.8483116 1.2817236 -1.047860 -0.7907484 -0.216459122  0.49097526 5.707614 1033
+Horta-Guinardo      -0.28751073 0.8903893 0.9755476 -1.069648 -0.8179917 -0.762371259  0.15755596 6.443834  324
+Les Corts           -0.12176780 0.8953890 1.1951925 -1.077110 -0.7988060 -0.383987197  0.39638648 5.339984  607
+Nou Barris          -0.55348444 0.8373892 0.5603478 -1.046002 -0.9993993 -0.798218554 -0.43905143 6.420382  120
+Sant Andreu         -0.27278089 0.8654102 0.9578125 -1.020450 -0.8026282 -0.651149380  0.15518429 5.375408  259
+Sant Marti           0.10010599 0.9456320 1.4456544 -1.079433 -0.7639415 -0.001620752  0.68171291 7.254248 1280
+Sants-Montjuic      -0.09060169 0.8740202 1.1590590 -1.088437 -0.7949933 -0.223675935  0.36406571 7.210017 1679
+Sarria-Sant Gervasi  0.04519333 0.9244509 1.3285292 -1.077312 -0.7776477 -0.079640596  0.55088149 4.567397  488
+
+> numSummary(Dataset[,c("F1", "F2"), drop=FALSE], groups=Dataset$neighbourhood, statistics=c("mean"), quantiles=c(0,.25,.5,.75,1))
+                             F1          F2 F1:n F2:n
+Ciutat Vella        -0.03765936 -0.25357401 2417 2417
+Eixample             0.05602090  0.21920220 4398 4398
+Gracia               0.03099594 -0.04365706 1033 1033
+Horta-Guinardo      -0.09311720 -0.28751073  324  324
+Les Corts           -0.17637659 -0.12176780  607  607
+Nou Barris           0.07718532 -0.55348444  120  120
+Sant Andreu         -0.07533857 -0.27278089  259  259
+Sant Marti           0.01534710  0.10010599 1280 1280
+Sants-Montjuic      -0.03000832 -0.09060169 1679 1679
+Sarria-Sant Gervasi -0.01876101  0.04519333  488  488
+

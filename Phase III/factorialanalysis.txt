@@ -1,0 +1,47 @@
+
+> Dataset <- 
++   readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC3/MIC_PEC3_20221.xlsx", 
++   rownames=FALSE, header=TRUE, na="", sheet="MIC_PAC3_21221", stringsAsFactors=TRUE)
+
+> local({
++   .FA <- 
++   factanal(~accommodates+bathrooms+bedrooms+beds+price+review_accuracy+review_checkin+review_cleanliness+review_communication+review_location,
++    factors=2, rotation="varimax", scores="regression", data=Dataset)
++   print(.FA)
++   Dataset <<- within(Dataset, {
++     F2 <- .FA$scores[,2]
++     F1 <- .FA$scores[,1]
++   })
++ })
+
+Call:
+factanal(x = ~accommodates + bathrooms + bedrooms + beds + price +     review_accuracy + review_checkin + review_cleanliness + review_communication +     review_location, factors = 2, data = Dataset, scores = "regression",     rotation = "varimax")
+
+Uniquenesses:
+        accommodates            bathrooms             bedrooms                 beds                price 
+               0.119                0.694                0.224                0.177                0.903 
+     review_accuracy       review_checkin   review_cleanliness review_communication      review_location 
+               0.224                0.297                0.421                0.268                0.619 
+
+Loadings:
+                     Factor1 Factor2
+accommodates                  0.938 
+bathrooms                     0.553 
+bedrooms                      0.881 
+beds                          0.907 
+price                         0.310 
+review_accuracy       0.879         
+review_checkin        0.835         
+review_cleanliness    0.761         
+review_communication  0.854         
+review_location       0.617         
+
+               Factor1 Factor2
+SS loadings      3.162   2.891
+Proportion Var   0.316   0.289
+Cumulative Var   0.316   0.605
+
+Test of the hypothesis that 2 factors are sufficient.
+The chi square statistic is 1843.69 on 26 degrees of freedom.
+The p-value is 0 
+

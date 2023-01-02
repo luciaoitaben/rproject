@@ -1,0 +1,60 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+Dataset <- 
+  readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC3/MIC_PEC3_20221.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="MIC_PAC3_21221", stringsAsFactors=TRUE)
+```
+
+
+### Análisis factorial: accommodates, bathrooms, bedrooms, beds, price, review_accuracy, review_checkin, review_cleanliness, review_communication, review_location
+```{r}
+local({
+  .FA <- 
+  factanal(~accommodates+bathrooms+bedrooms+beds+price+review_accuracy+review_checkin+review_cleanliness+review_communication+review_location,
+   factors=2, rotation="varimax", scores="regression", data=Dataset)
+  print(.FA)
+  Dataset <<- within(Dataset, {
+    F2 <- .FA$scores[,2]
+    F1 <- .FA$scores[,1]
+  })
+})
+```
+
+```{r}
+library(abind, pos=16)
+```
+
+
+```{r}
+library(e1071, pos=17)
+```
+
+
+
+### Resúmenes numéricos: Dataset
+```{r}
+numSummary(Dataset[,c("F1", "F2"), drop=FALSE], groups=Dataset$neighbourhood, statistics=c("mean", "sd", "IQR", "quantiles"), quantiles=c(0,.25,.5,.75,1))
+```
+
+
+### Resúmenes numéricos: Dataset
+```{r}
+numSummary(Dataset[,c("F1", "F2"), drop=FALSE], groups=Dataset$neighbourhood, statistics=c("mean"), quantiles=c(0,.25,.5,.75,1))
+```
+
