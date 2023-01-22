@@ -1,0 +1,69 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+load("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC4/MIC_PEC4_20221.xlsx")
+```
+
+
+```{r}
+load("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC4/MIC_PEC4_20221.xlsx")
+```
+
+```{r}
+Dataset <- 
+  readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC4/MIC_PEC4_20221.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC4_20221", stringsAsFactors=TRUE)
+```
+
+```{r}
+Dataset <- within(Dataset, {
+  city_center2 <- factor(city_center, labels=c('0','1'))
+})
+```
+
+```{r}
+Dataset <- within(Dataset, {
+  city_center2 <- as.factor(city_center)
+})
+```
+
+```{r}
+Dataset <- within(Dataset, {
+  multiple_host2 <- as.factor(multiple_host)
+})
+```
+
+```{r}
+library(abind, pos=16)
+```
+
+
+
+### Tablas de contingencia de dos vías city_center2, multiple_host2
+```{r}
+local({
+  .Table <- xtabs(~city_center2+multiple_host2, data=Dataset)
+  cat("\nFrequency table:\n")
+  print(.Table)
+  cat("\nTotal percentages:\n")
+  print(totPercents(.Table))
+  .Test <- chisq.test(.Table, correct=FALSE)
+  print(.Test)
+})
+```
+
