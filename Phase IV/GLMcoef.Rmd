@@ -1,0 +1,70 @@
+<!-- R Commander Markdown Template -->
+
+Reemplazar con el título principal
+=======================
+
+### lucia
+
+### `r as.character(Sys.Date())`
+
+```{r echo=FALSE}
+# incluya este fragmento de código literalmente para especificar las opciones
+knitr::opts_chunk$set(comment=NA, prompt=TRUE, out.width=750, fig.height=8, fig.width=8)
+library(Rcmdr)
+library(car)
+library(RcmdrMisc)
+```
+
+```{r}
+Dataset <- 
+  readXL("C:/Users/lucia/OneDrive/Escritorio/Máster logística UOC/Métodos cuantitativos/PEC4/MIC_PEC4_20221.xlsx", 
+  rownames=FALSE, header=TRUE, na="", sheet="MIC_PEC4_20221", stringsAsFactors=TRUE)
+```
+
+```{r}
+Dataset <- subset(Dataset, subset=price<350)
+```
+
+```{r}
+Data <- na.omit(Dataset)
+```
+
+```{r}
+library(MASS, pos=16)
+```
+
+```{r}
+center.lda <- lda(cbind(Data$accommodates,Data$bathrooms,Data$bedrooms,Data$beds,Data$price,Data$review_accuracy,
+  Data$review_checkin,Data$review_cleanliness,Data$review_communication,Data$review_location),Data$city_center)
+```
+
+
+```{r}
+center.lda
+```
+
+
+```{r}
+sum(predict(center.lda)$class == Data$city_center) / length(Data$city_center) * 100
+```
+
+
+### Modelo lineal generalizado: GLM.2: city_center ~ accommodates + bathrooms + bedrooms + beds + price + review_accuracy + review_checkin + review_cleanliness + review_communication + review_location
+
+### exp
+```{r}
+GLM.2 <- glm(city_center ~ accommodates + bathrooms + bedrooms + beds + price + review_accuracy + review_checkin + review_cleanliness + review_communication + review_location, family=binomial(logit), data=Data)
+summary(GLM.2)
+exp(coef(GLM.2))  # Exponentiated coefficients ("odds ratios")
+```
+
+
+### Modelo lineal generalizado: GLM.3: city_center ~ accommodates + bathrooms + bedrooms + beds + price + review_accuracy + review_checkin + review_cleanliness + review_communication + review_location
+
+### exp
+```{r}
+GLM.3 <- glm(city_center ~ accommodates + bathrooms + bedrooms + beds + price + review_accuracy + review_checkin + review_cleanliness + review_communication + review_location, family=binomial(logit), data=Data)
+summary(GLM.3)
+exp(coef(GLM.3))  # Exponentiated coefficients ("odds ratios")
+```
+
